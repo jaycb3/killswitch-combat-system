@@ -18,6 +18,13 @@ GMCP-first curing and offence scaffolding for **Achaea** on **Mudlet**.
 
    This writes `dist/killswitch-0.1.0.mpackage` (a ZIP with `config.lua`, `killswitch.xml`, and `src/`).
 
+   **Windows:** CMD and PowerShell do not run `.sh` files by themselves. From the repo root, either:
+
+   - **`scripts\build-mpackage.bat`** — uses Git Bash + `zip` if installed, otherwise PowerShell’s `Compress-Archive`.
+   - Or in PowerShell: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\build-mpackage.ps1`
+
+   To use the bash script on Windows, install [Git for Windows](https://git-scm.com/download/win), open **Git Bash**, `cd` to the repo, then run `bash scripts/build-mpackage.sh` (needs `zip` on your `PATH`; Git Bash often includes it).
+
    **No shell?** From the repo root you can run:
 
    ```bash
