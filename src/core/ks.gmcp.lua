@@ -226,7 +226,8 @@ end
 
 function ks.gmcp.enableModules()
   if sendGMCP then
-    sendGMCP([[Core.Supports.Set ["Char 1", "Char.Vitals 1", "Char.Afflictions 1", "Char.Defences 1", "Char.Items 1", "Char.Skills 1", "Char.Status 1", "Room 1", "IRE.Rift 1", "IRE.Target 1", "IRE.Time 1"]]])
+    -- [=[...]=] so the JSON's closing ] is not parsed as the first ] of Lua's ]]
+    sendGMCP([=[Core.Supports.Set ["Char 1", "Char.Vitals 1", "Char.Afflictions 1", "Char.Defences 1", "Char.Items 1", "Char.Skills 1", "Char.Status 1", "Room 1", "IRE.Rift 1", "IRE.Target 1", "IRE.Time 1"]]=])
   end
 end
 
