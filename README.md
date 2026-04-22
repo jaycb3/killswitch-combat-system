@@ -4,13 +4,25 @@ GMCP-first curing and offence scaffolding for **Achaea** on **Mudlet**.
 
 ## Install (recommended): `.mpackage` from the command line
 
-1. **Build** the package (requires `zip`):
+1. **Build** the package (requires `zip`, usually preinstalled on macOS):
+
+   From the **repository root** (`killswitch/`), run **bash** explicitly:
 
    ```bash
-   ./scripts/build-mpackage.sh
+   bash scripts/build-mpackage.sh
    ```
 
+   You should see lines starting with `==>` and a `dist/killswitch-0.1.0.mpackage` file when it finishes.
+
+   **If nothing prints or the script exits immediately:** do not use `sh scripts/...` — use `bash` as above. If `./scripts/build-mpackage.sh` says “Permission denied”, run `chmod +x scripts/build-mpackage.sh` once, or keep using `bash scripts/build-mpackage.sh`.
+
    This writes `dist/killswitch-0.1.0.mpackage` (a ZIP with `config.lua`, `killswitch.xml`, and `src/`).
+
+   **No shell?** From the repo root you can run:
+
+   ```bash
+   mkdir -p dist && rm -f dist/killswitch-0.1.0.mpackage && zip -r dist/killswitch-0.1.0.mpackage config.lua killswitch.xml README.md src
+   ```
 
 2. In Mudlet, open your Achaea profile and paste **one** line in the command line (adjust the path):
 
