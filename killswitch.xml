@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+  <ScriptPackage>
+    <ScriptGroup isFolder="yes" isActive="yes" name="Killswitch">
+      <Script isActive="yes" isFolder="no">
+        <name>00-killswitch-loader</name>
+        <packageName>killswitch</packageName>
+        <script><![CDATA[
+-- Killswitch loader — requires repo at getMudletHomeDir() .. "/killswitch/"
+local ok, err = pcall(function()
+  assert(loadfile(getMudletHomeDir() .. "/killswitch/src/killswitch_loader.lua"))()
+end)
+if not ok then
+  echo("Killswitch failed to load: " .. tostring(err) .. "\n")
+end
+]]></script>
+        <eventHandlerList />
+      </Script>
+    </ScriptGroup>
+  </ScriptPackage>
+  <AliasPackage>
+    <AliasGroup isFolder="yes" isActive="yes" name="Killswitch">
+      <Alias isActive="yes">
+        <name>atk</name>
+        <regex>^atk(?:\s+(.+))?$</regex>
+        <command>lua ks.aliases.atk(matches[2] or "")</command>
+      </Alias>
+      <Alias isActive="yes">
+        <name>unatk</name>
+        <regex>^unatk$</regex>
+        <command>lua ks.aliases.unatk()</command>
+      </Alias>
+      <Alias isActive="yes">
+        <name>ksaffs</name>
+        <regex>^ksaffs$</regex>
+        <command>lua ks.aliases.showAffs()</command>
+      </Alias>
+      <Alias isActive="yes">
+        <name>ksdefs</name>
+        <regex>^ksdefs$</regex>
+        <command>lua ks.aliases.showDefs()</command>
+      </Alias>
+    </AliasGroup>
+  </AliasPackage>
+  <TriggerPackage>
+    <TriggerGroup isFolder="yes" isActive="yes" name="Killswitch">
+      <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="false" isColorTriggerBg="false" isLineDelta="false" isCondition="false" isBold="false" isItalic="false" isUnderline="false" isStrikeout="false" isReverse="false" isEcho="false">
+        <name>balance-restored-fallback</name>
+        <regex>^Balance Returned:?\s*$</regex>
+        <script><![CDATA[
+if ks and ks.bals then ks.bals.balance = true end
+if ks and ks.curing and ks.curing.decide then ks.curing.decide("trigger_balance") end
+]]></script>
+      </Trigger>
+      <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="false" isColorTriggerBg="false" isLineDelta="false" isCondition="false" isBold="false" isItalic="false" isUnderline="false" isStrikeout="false" isReverse="false" isEcho="false">
+        <name>equilibrium-restored-fallback</name>
+        <regex>^Equilibrium Returned:?\s*$</regex>
+        <script><![CDATA[
+if ks and ks.bals then ks.bals.equilibrium = true end
+if ks and ks.curing and ks.curing.decide then ks.curing.decide("trigger_eq") end
+]]></script>
+      </Trigger>
+    </TriggerGroup>
+  </TriggerPackage>
+</MudletPackage>
